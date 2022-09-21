@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>My Watch List - Tugas 3 PBP</h1>
+
+<h4>Name: </h4>
+<p>{{nama}}</p>
+
+<h4>Student ID: </h4>
+<p>{{id}}</p>
+
+<table>
+  <tr>
+    <th>Watched</th>
+    <th>Title</th>
+    <th>Rating</th>
+    <th>Release Date</th>
+    <th>Review</th>
+  </tr>
+  {% comment %} Add the data below this line {% endcomment %}
+  {% for film in list_film %}
+      <tr>
+          <th>{{film.watched}}</th>
+          <th>{{film.title}}</th>
+          <th>{{film.rating}}</th>
+          <th>{{film.release_date}}</th>
+          <th>{{film.review}}</th>
+      </tr>
+  {% endfor %}
+</table>
+
+ {% endblock content %}

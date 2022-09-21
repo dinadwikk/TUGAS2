@@ -1,0 +1,114 @@
+[
+    {
+        "model":"mywatchlist.ContentMyWatchList",
+        "pk":1,
+        "fields":{
+            "watched":"True",
+            "tittle":"The Batman",
+            "rating": "7.9",
+            "release_date": "March 4, 2022",
+            "review": "Good but not so good."
+        }
+},
+    {
+    "model":"mywatchlist.ContentMyWatchList",
+    "pk":2,
+    "fields":{
+        "watched":"True",
+        "tittle":"Spider-Man: No Way Home",
+        "rating": "8.3",
+        "release_date": "December 17, 2021",
+        "review": "Just Awesome!"
+    }
+},
+    {
+    "model":"mywatchlist.ContentMyWatchList",
+    "pk":3,
+    "fields":{
+        "watched":"True",
+        "tittle":"Bridgerton",
+        "rating": "7.3",
+        "release_date": "December 25, 2020",
+        "review": "Breathtakingly Beige"
+    }
+},
+    {
+    "model":"mywatchlist.ContentMyWatchList",
+    "pk":4,
+    "fields":{
+        "watched":"True",
+        "tittle":"Emily in Paris",
+        "rating": "6.9",
+        "release_date": "December 17, 2021",
+        "review": "Started out fun but falls to the abyss."
+    }
+},
+    {
+    "model":"mywatchlist.ContentMyWatchList",
+    "pk":5,
+    "fields":{
+        "watched":"True",
+        "tittle":"Peacemaker",
+        "rating": "8.3",
+        "release_date": "January 13, 2022",
+        "review": "A wild, hilarious ride"
+    }
+},
+    {
+    "model":"mywatchlist.ContentMyWatchList",
+    "pk":6,
+    "fields":{
+        "watched":"True",
+        "tittle":"Kingsman: The Secret Service",
+        "rating": "7.7",
+        "release_date": "February 13, 2015",
+        "review": "One of best Action Film I've Seen Yet"
+    }
+},
+    {
+    "model":"mywatchlist.ContentMyWatchList",
+    "pk":7,
+    "fields":{
+        "watched":"True",
+        "tittle":"Inventing Anna",
+        "rating": "6.8",
+        "release_date": "February 11, 2022",
+        "review": "Stop elevating sociopathy."
+    }
+},
+{
+    "model":"mywatchlist.ContentMyWatchList",
+    "pk":8,
+    "fields":{
+        "watched":"True",
+        "tittle":"Pirates of the Caribbean: The Curse of the Black Pearl",
+        "rating": "8.1",
+        "release_date": "July 9, 2003",
+        "review": "Phenomenal!"
+    }
+},
+    {
+    "model":"mywatchlist.ContentMyWatchList",
+    "pk":9,
+    "fields":{
+        "watched":"True",
+        "tittle":"Jumanji: Welcome to the Jungle",
+        "rating": "6.9",
+        "release_date": "December 20, 2017",
+        "review": "A Most Enjoyable Film Which Endlessly Pulls at the Corners of Your Face"
+
+    }
+},
+    {
+    "model":"mywatchlist.ContentMyWatchList",
+    "pk":10,
+    "fields":{
+        "watched":"True",
+        "tittle":"The Maze Runner",
+        "rating": "6.8",
+        "release_date": "September 19, 2014",
+        "review": "Intriguing Fantasy Tale"
+    }
+}
+]
+
