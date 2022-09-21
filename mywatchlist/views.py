@@ -8,7 +8,7 @@ def show_html(request):
     #return render(request, "wishlist.html")
     data_film = ContentMyWatchList.objects.all()
     context = {
-    'list_barang': data_film,
+    'data_film': data_film,
     'nama': 'Dina 🌈',
     'npm' : '2106751650'
     }
