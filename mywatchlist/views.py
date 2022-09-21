@@ -10,7 +10,7 @@ def show_html(request):
     context = {
     'data_film': data_film,
     'nama': 'Dina 🌈',
-    'npm' : '2106751650'
+    'id' : '2106751650'
     }
     return render(request, "mywatchlist.html", context)
 
