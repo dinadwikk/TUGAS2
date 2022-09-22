@@ -1,4 +1,4 @@
-# TUGAS 1
+# TUGAS 2
 
 Pemrograman Berbasis Platform (CSGE602022) - diselenggarakan oleh Fakultas Ilmu Komputer Universitas Indonesia, Semester Ganjil 2022/2023
 
