@@ -1,6 +1,6 @@
 from django.test import TestCase, Client
 
-# Create your tests here.
+
 class MyWatchListTestCase(TestCase):
     def test_url_menu_exist(self):
         response = Client().get("/mywatchlist/")
