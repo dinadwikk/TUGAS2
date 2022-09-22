@@ -166,3 +166,7 @@ def show_json(request):
 <img width="419" alt="Screen Shot 2022-09-21 at 14 38 28" src="https://user-images.githubusercontent.com/92242454/191639700-573a936b-8e79-49e1-b64d-883467583edc.png">
 
  
+# SOURCE
+  https://pbp-fasilkom-ui.github.io/ganjil-2023/assignments/tutorial/tutorial-1
+  https://docs.oracle.com/en/cloud/saas/data-cloud/data-cloud-help-center/IntegratingBlueKaiPlatform/data_delivery.html
+  https://scele.cs.ui.ac.id/pluginfile.php/161284/mod_resource/content/1/04%20-%20Data%20Delivery.pdf
