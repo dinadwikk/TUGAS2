@@ -10,4 +10,4 @@ class TodolistTemplate(models.Model):
     date = models.DateField(auto_now_add=True)
     title = models.CharField(max_length=255)
     description = models.TextField()
-    isfinished = models.BooleanField(default= True)
+    #isfinished = models.BooleanField(default= True)

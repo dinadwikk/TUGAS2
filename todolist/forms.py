@@ -1,7 +1,7 @@
 from django.forms import ModelForm
-from todolist.models import TaskItem
+from todolist.models import TodolistTemplate
 
 class TaskForm(ModelForm):
     class Meta:
-        model = TaskItem
+        model = TodolistTemplate
         fields = ['title', 'description']

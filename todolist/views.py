@@ -10,10 +10,20 @@ from django.contrib.auth.decorators import login_required
 import datetime
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from todolist.forms import TaskForm
+
+from todolist.models import TodolistTemplate
 
 @login_required(login_url='/todolist/login/')
 def show_todolist(request):
-    pass
+    data_todos = TodolistTemplate.objects.all()
+    context = {
+    'list_todos': data_todos,
+    'username': request.user.username,
+    'last_login': request.COOKIES['last_login'],
+    }
+    return render(request, "todolist.html", context)
+
 def register(request):
     form = UserCreationForm()
 
@@ -22,7 +32,7 @@ def register(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Akun telah berhasil dibuat!')
-            return redirect('wishlist:login')
+            return redirect('todolist:login')
     
     context = {'form':form}
     return render(request, 'register.html', context)
@@ -34,7 +44,7 @@ def login_user(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user) 
-            response = HttpResponseRedirect(reverse("wishlist:show_wishlist")) 
+            response = HttpResponseRedirect(reverse('todolist:show_todolist'))
             response.set_cookie('last_login', str(datetime.datetime.now()))
             return response
         else:
@@ -44,6 +54,20 @@ def login_user(request):
 
 def logout_user(request):
     logout(request)
-    response = HttpResponseRedirect(reverse('wishlist:login'))
+    response = HttpResponseRedirect(reverse('todolist:login'))
     response.delete_cookie('last_login')
     return response
+
+def create(request):
+    form = TaskForm()
+    if request.method == 'POST':
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            form_listener = form.save(commit=False)
+            form_listener.user = request.user
+            form_listener.save()
+            return HttpResponseRedirect(reverse('todolist:show_todos'))
+        else:
+            messages.info(request,'Terjadi kesalahan saat menyimpan data!')
+    context = {'form': form}
+    return render(request, 'create.html',context)

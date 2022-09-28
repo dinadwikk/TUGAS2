@@ -6,5 +6,22 @@
 <h5>Username : </h5>
 <p>{{username}}</p>
 
+<button><a href="{% url 'todolist:create' %}">Add task</a></button>
+<button><a href="{% url 'todolist:logout' %}">Logout</a></button>
+<table>
+    <tr>
+      <th>Date</th>
+      <th>Task</th>
+      <th>Description</th>
+    </tr>
+    {% comment %} Add the data below this line {% endcomment %}
+    {% for todo in list_todolist %}
+        <tr>
+            <th>{{todo.date}}</th>
+            <th>{{todo.title}}</th>
+            <th>{{todo.description}}</th>
+        </tr>
+    {% endfor %}
+  </table>
 
 {% block content %}
