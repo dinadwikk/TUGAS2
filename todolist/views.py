@@ -1,26 +1,49 @@
+from http import cookies
+from http.cookiejar import Cookie
 from django.shortcuts import render
-from mywatchlist.models import ContentMyWatchList
-from django.http import HttpResponse
-from django.core import serializers
+from django.shortcuts import redirect
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
+from django.contrib.auth import authenticate, login
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
+import datetime
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
-# Create your views here.
-# def show_html(request):
-#     #return render(request, "wishlist.html")
-#     data_film = ContentMyWatchList.objects.all()
-#     context = {
-#     'data_film': data_film,
-#     'nama': 'Dina 🌈',
-#     'id' : '2106751650'
-#     }
-#     return render(request, "mywatchlist.html", context)
+@login_required(login_url='/todolist/login/')
+def show_todolist(request):
+    pass
+def register(request):
+    form = UserCreationForm()
 
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Akun telah berhasil dibuat!')
+            return redirect('wishlist:login')
+    
+    context = {'form':form}
+    return render(request, 'register.html', context)
 
-def show_xml(request):
-    data = ContentMyWatchList.objects.all()
-    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+def login_user(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user) 
+            response = HttpResponseRedirect(reverse("wishlist:show_wishlist")) 
+            response.set_cookie('last_login', str(datetime.datetime.now()))
+            return response
+        else:
+            messages.info(request, 'Username atau Password salah!')
+    context = {}
+    return render(request, 'login.html', context)
 
-
-def show_json(request):
-    data = ContentMyWatchList.objects.all()
-    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
-
+def logout_user(request):
+    logout(request)
+    response = HttpResponseRedirect(reverse('wishlist:login'))
+    response.delete_cookie('last_login')
+    return response

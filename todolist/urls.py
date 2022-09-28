@@ -1,13 +1,15 @@
 from django.urls import path
-from mywatchlist.views import show_html
-from mywatchlist.views import show_xml 
-from mywatchlist.views import show_json
+from todolist.views import register, show_todolist
+from todolist.views import login_user
+from todolist.views import logout_user
+
 
 app_name = 'todolist'
 
 urlpatterns = [
-    path('', show_html, name='show_html'),
-    path('html/', show_html, name='show_html'),
-    path('xml/', show_xml, name='show_xml'),
-    path('json/', show_json, name='show_json'),
+    path('', show_todolist, name='show_todolist'),
+    path('create/', register, name='create'),
+    path('register/', register, name='register'),
+    path('login/', login_user, name='login'),
+    path('logout/', logout_user, name='logout'),
 ]

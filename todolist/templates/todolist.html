@@ -1,32 +1,10 @@
 {% extends 'base.html' %}
 
+{% block meta %}
+<title>Assigment 4 : To Do List!</title>
+
+<h5>Username : </h5>
+<p>{{username}}</p>
+
+
 {% block content %}
-
-<h1>To Do List - Tugas 4 PBP</h1>
-
-<h4>Name: </h4>
-<p>{{nama}}</p>
-
-<h4>Student ID: </h4>
-<p>{{id}}</p>
-
-<table>
-<tr>
-  <th>Date</th>
-  <th>Title</th>
-  <th>Description</th>
-  
-</tr>
-{% comment %} Add the data below this line {% endcomment %}
-{% for film in data_film %}
-    <tr>
-        <th>{{film.watched}}</th>
-        <th>{{film.title}}</th>
-        <th>{{film.rating}}</th>
-        <th>{{film.release_date}}</th>
-        <th>{{film.review}}</th>
-    </tr>
-{% endfor %}
-</table>
-
-{% endblock content %}
