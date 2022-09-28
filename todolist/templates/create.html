@@ -1,4 +1,3 @@
-
 {% extends 'base.html' %}
 
 {% block meta %}
@@ -7,7 +6,7 @@
 
 {% block content %}  
 <div class="Create Task">
-    <h5>Create Task</h5>
+    <h3>Create Your Task Down Here! </h3>
     <form method="POST" action="">
         {% csrf_token %}
         <table>  
@@ -28,3 +27,4 @@
 {% endif %}
 
 </div>  
+{% endblock content %}

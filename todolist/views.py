@@ -16,7 +16,7 @@ from todolist.models import TodolistTemplate
 
 @login_required(login_url='/todolist/login/')
 def show_todolist(request):
-    data_todos = TodolistTemplate.objects.all()
+    data_todos = TodolistTemplate.objects.filter(user=request.user)
     context = {
     'list_todos': data_todos,
     'username': request.user.username,
@@ -63,10 +63,12 @@ def create(request):
     if request.method == 'POST':
         form = TaskForm(request.POST)
         if form.is_valid():
-            form_listener = form.save(commit=False)
+            form_listener = form.save(commit=True)
             form_listener.user = request.user
             form_listener.save()
-            return HttpResponseRedirect(reverse('todolist:show_todos'))
+            messages.info(request,'Data berhasil disimpan!')
+
+            return HttpResponseRedirect(reverse('todolist:show_todolist'))
         else:
             messages.info(request,'Terjadi kesalahan saat menyimpan data!')
     context = {'form': form}
