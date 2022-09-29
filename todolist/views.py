@@ -10,8 +10,6 @@ from django.contrib.auth.decorators import login_required
 import datetime
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from todolist.forms import TaskForm
-
 from todolist.models import TodolistTemplate
 
 @login_required(login_url='/todolist/login/')
@@ -58,6 +56,7 @@ def logout_user(request):
     response.delete_cookie('last_login')
     return response
 
+@login_required(login_url='/todolist/login/')
 def create(request):
     form = TaskForm()
     if request.method == 'POST':
@@ -73,3 +72,5 @@ def create(request):
             messages.info(request,'Terjadi kesalahan saat menyimpan data!')
     context = {'form': form}
     return render(request, 'create.html',context)
+
+

@@ -1,4 +1,3 @@
-from operator import mod
 from django.db import models
 from django.conf import settings
 
@@ -10,4 +9,3 @@ class TodolistTemplate(models.Model):
     date = models.DateField(auto_now_add=True)
     title = models.CharField(max_length=255)
     description = models.TextField()
-    #isfinished = models.BooleanField(default= True)

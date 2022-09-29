@@ -5,9 +5,10 @@
     <h1>Assigment 4 : To Do List! 📚 </h1> 
 </div>
 
-<h3>Username : {{username}} Todo's </h3>
+<h3 style="margin-bottom: 5px">Username : {{username}} Todo's </h3>
+<h5 style="margin-top:1px">Sesi terakhir login: {{ last_login }}</h5>
 
-<button style="margin-bottom: 20px;"><a href="{% url 'todolist:create' %}">Add task</a></button>
+<button style="margin-bottom: 20px;""><a href="{% url 'todolist:create' %}">Add task</a></button>
 
 <table style="width:100%;border:1px solid rgb(0, 0, 0)">
     <tr style="border:1px solid black; text-align: center; background-color: rgb(148, 191, 243);">
