@@ -15,6 +15,7 @@
         <td style="border:1px solid black">Date</td>
       <td style="border:1px solid black">Task</td>
       <td style="border:1px solid black">Description</td>
+      <td style="border:1px solid black">Delete</td>
     </tr>
 
     {% for todo in list_todos %}
@@ -22,6 +23,7 @@
             <td style="border:1px solid black">{{todo.date}}</td>
             <td style="border:1px solid black">{{todo.title}}</td>
             <td style="border:1px solid black">{{todo.description}}</td>
+            <td><button><a href="{% url 'todolist:delete' todo.id %}"> Delete</a></button></td>
         </tr>
     {% endfor %}
   </table>

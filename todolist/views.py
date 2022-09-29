@@ -74,4 +74,7 @@ def create(request):
     context = {'form': form}
     return render(request, 'create.html',context)
 
+def delete(request, id):
+    TodolistTemplate.objects.filter(pk=id).delete()
+    return HttpResponseRedirect(reverse('todolist:show_todolist'))
 
