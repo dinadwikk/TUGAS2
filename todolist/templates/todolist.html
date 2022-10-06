@@ -6,36 +6,39 @@
   p{
     text-align: left;
     }
-    .grid-container {
-      display: grid;
-      grid-template-columns: auto auto auto auto;
-      gap: 5px;
-      padding: 20px;
+  .grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 10px;
+    padding: 10px;
   }
+ 
+
 </style>
 
-<div style="background-color: beige;">
+<body style="background-color: rgb(65, 57, 103);">
+<div>
 
-  <head>
-    <nav class="navbar" style="background-color: #403681;">
+
+    <nav class="navbar" style="background-color: #7b7a81;">
       <div class="container-fluid">
         <h6 class="text-white" style="margin-bottom: 4px">Username : {{username}} Todo's </h6>
         <h6 class="text-white" style="margin-bottom: 4px">Sesi terakhir login: {{ last_login }}</h6> 
+        <button style="margin-left: 20px;""><a href="{% url 'todolist:create' %}">Add task</a></button>
+
         <button class="text-white" style="margin-right: 10px" class="btn btn-outline-success me-2" type="button"><a href="{% url 'todolist:logout' %}">Logout</a></button>
       </div>
     
     </nav>
     <div class = "todolist" ALIGN="center">
-        <h1> To Do List 📚 </h1> 
-        <h6>Hi, Write down your task!</h6>
+        <h1 class="text-white"> To Do List 📚 </h1> 
+        <h6 class="text-white">Hi, Write down your task!</h6>
     </div>
-  </head>
-  <body>
 
-    <button style="margin-left: 20px;""><a href="{% url 'todolist:create' %}">Add task</a></button>
 
+\    <div class="grid-container" >
       {% for todo in list_todos %}
-        <div class="grid-container" >
+        <div class="grid-container"  >
           <div class="card" style="width: 18rem;">
             <div class="card-body">
               <h5 class="card-title">Assigment</h5>
@@ -47,12 +50,15 @@
             </div>
           </div>
         </div>
-      </div>
       {% endfor %}
-  </body>
+      
+    </div>
+
+      
+  
 
 </div>
-
+</body>
   
 
 {% endblock content %}
