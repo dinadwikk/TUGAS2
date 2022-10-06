@@ -1,36 +1,57 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class = "todolist" ALIGN="center">
-    <h1>Assigment 4 : To Do List! 📚 </h1> 
+<meta name="viewport", content="width=device-width, initial-scale=1.0">
+<style>
+  p{
+    text-align: left;
+    }
+    .grid-container {
+      display: grid;
+      grid-template-columns: auto auto auto auto;
+      gap: 5px;
+      padding: 20px;
+  }
+</style>
+
+<div style="background-color: beige;">
+
+  <head>
+    <nav class="navbar" style="background-color: #403681;">
+      <div class="container-fluid">
+        <h6 class="text-white" style="margin-bottom: 4px">Username : {{username}} Todo's </h6>
+        <h6 class="text-white" style="margin-bottom: 4px">Sesi terakhir login: {{ last_login }}</h6> 
+        <button class="text-white" style="margin-right: 10px" class="btn btn-outline-success me-2" type="button"><a href="{% url 'todolist:logout' %}">Logout</a></button>
+      </div>
+    
+    </nav>
+    <div class = "todolist" ALIGN="center">
+        <h1> To Do List 📚 </h1> 
+        <h6>Hi, Write down your task!</h6>
+    </div>
+  </head>
+  <body>
+
+    <button style="margin-left: 20px;""><a href="{% url 'todolist:create' %}">Add task</a></button>
+
+      {% for todo in list_todos %}
+        <div class="grid-container" >
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">Assigment</h5>
+                  <p>Date : {{todo.date}}</p>
+                  <p>Task : {{todo.title}} </p>
+                  <p>Description : {{todo.description}} </p>
+                  <p><button><a href="{% url 'todolist:delete' todo.id %}"> Delete</a></button></p>
+                
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+  </body>
+
 </div>
-
-<h3 style="margin-bottom: 5px">Username : {{username}} Todo's </h3>
-<h5 style="margin-top:1px">Sesi terakhir login: {{ last_login }}</h5>
-
-<button style="margin-bottom: 20px;""><a href="{% url 'todolist:create' %}">Add task</a></button>
-
-<table style="width:100%;border:1px solid rgb(0, 0, 0)">
-    <tr style="border:1px solid black; text-align: center; background-color: rgb(148, 191, 243);">
-        <td style="border:1px solid black">Date</td>
-      <td style="border:1px solid black">Task</td>
-      <td style="border:1px solid black">Description</td>
-      <td style="border:1px solid black">Delete</td>
-    </tr>
-
-    {% for todo in list_todos %}
-        <tr style="border:1px solid black">
-            <td style="border:1px solid black">{{todo.date}}</td>
-            <td style="border:1px solid black">{{todo.title}}</td>
-            <td style="border:1px solid black">{{todo.description}}</td>
-            <td><button><a href="{% url 'todolist:delete' todo.id %}"> Delete</a></button></td>
-        </tr>
-    {% endfor %}
-  </table>
-  <div class = "logout" ALIGN="center">
-    <button style="margin-top: 20px;"><a href="{% url 'todolist:logout' %}">Logout</a></button>
-  </div>
-
 
   
 

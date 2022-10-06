@@ -5,26 +5,47 @@
 {% endblock meta %}
 
 {% block content %}  
-<div class="Create Task">
-    <h3>Create Your Task Down Here! </h3>
-    <form method="POST" action="">
-        {% csrf_token %}
-        <table>  
-            {{ form.as_table }}  
-            <tr>  
-                <td></td>
-                <td><input type="submit" name="submit" value="Save"/></td>  
-            </tr>  
-        </table>  
-    </form>
-
-{% if messages %}  
-    <ul>   
-        {% for message in messages %}  
-            <li>{{ message }}</li>  
-            {% endfor %}  
-    </ul>   
-{% endif %}
-
-</div>  
+<section class="vh-100" style="background-color: #3e2a64;">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-xl-7">
+  
+          <h1 class="text-white mb-4">Registration Form</h1>
+  
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body">
+  
+              <div class="row align-items-center pt-4 pb-3">
+  
+                <div class="Create Task">
+                    <h3>Create Your Task Down Here! </h3>
+                    <form method="POST" action="">
+                        {% csrf_token %}
+                        <table>  
+                            {{ form.as_table }}  
+                            <tr>  
+                                <td></td>
+                                <td><input type="submit" name="submit" value="Save"/></td>  
+                            </tr>  
+                        </table>  
+                    </form>
+                
+                {% if messages %}  
+                    <ul>   
+                        {% for message in messages %}  
+                            <li>{{ message }}</li>  
+                            {% endfor %}  
+                    </ul>   
+                {% endif %}
+                
+                </div>
+  
+  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+  
 {% endblock content %}
