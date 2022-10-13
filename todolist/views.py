@@ -103,9 +103,12 @@ def create_todo_ajax(request):
     if request.method == "POST":
         title = request.POST['title']
         description = request.POST['description']
-        TodolistTemplate.objects.create(user=request.user, title=title, description=description)
-        return JsonResponse({'error': False, 'msg':'Successful'})
-    return redirect('todolist:show_todolist')    
+        
+        todotemplate = TodolistTemplate.objects.create(user=request.user, title=title, description=description, date=datetime.date.today())
+        todotemplate.save()
+
+        todo = {title : todotemplate.title,description:todotemplate.description, date:todotemplate.date}
+        return JsonResponse(todo)
 
 def delete_task(request, id):
     task = TodolistTemplate.objects.get(id = id)
