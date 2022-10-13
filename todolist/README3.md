@@ -4,7 +4,7 @@ Pemrograman Berbasis Platform (CSGE602022) - diselenggarakan oleh Fakultas Ilmu 
 
 *Read this in other languages: [Indonesian](README.md), [English](README.en.md)*
 
-Heroku app url : https://dinaherokuver.herokuapp.com/todolist/create-ajax/
+Heroku app url : https://dinaherokuver.herokuapp.com/todolist/json/
 
 Nama  : Dina Dwi K.
 NPM   : 2106751650
