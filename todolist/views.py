@@ -2,6 +2,7 @@ from http import cookies
 from http.cookiejar import Cookie
 from multiprocessing import context
 from turtle import title
+from unittest import result
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.core import serializers
@@ -17,6 +18,7 @@ from todolist.forms import TaskForm
 from todolist.models import TodolistTemplate
 from django.http import JsonResponse
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 
 
 @login_required(login_url='/todolist/login/')
@@ -96,23 +98,39 @@ def delete(request, id):
 
 
 
-@login_required(login_url='/todolist/login/')
+@csrf_exempt
 def create_todo_ajax(request):
     if request.method == "POST":
-        user = request.POST.get("user")
-        title = request.POST.get("titlr")
+        date = datetime.date.today()
+        user = request.user
+        title = request.POST.get("title")
         description = request.POST.get("description")
-
-        create_todolist = TodolistTemplate.objects.create(
+        todolist = TodolistTemplate.objects.create(
             user=user, 
             title=title, 
-            description=description
+            description=description,
+            date=date
         )
+
+        create_todolist = {
+            'fields':{
+                'title':todolist.title,
+                'description':todolist.description,
+                'date':todolist.date,
+            },
+            'pk':todolist.pk
+        }
+
+        print(create_todolist)
         return JsonResponse(
-            {
-                'error':False,
-                'msg':'Success'
-            }
+            create_todolist
         )
-    return redirect('todolist:show_todolist')
+
+def delete_task(request, id):
+    task = TodolistTemplate.objects.get(id = id)
+    task.delete()
+    data = {
+            'deleted': True
+        }
+    return JsonResponse(data)
 
