@@ -20,9 +20,9 @@
       
     <script type="text/javascript" language="javascript">
     $(document).ready(function() {
-        $.get("http://127.0.0.1:8000/todolist/json/", function(todolist) {
+        $.get("http://127.0.0.1:8000/todolist/json/", "https://dinaherokuver.herokuapp.com/todolist/json/", function(todolist) {
             console.log(todolist)
-            print(todolist)
+            print(todo)
             for (i = 0; i < todolist.length; i++){
                 $(".task_print").append(` <div class="grid-container">
                 <div class="card" style="width: 18rem;">
@@ -37,7 +37,7 @@
             }
         });
         $("#click").click(function(){
-          $.post("http://127.0.0.1:8000/todolist/create-ajax/",{
+          $.post("http://127.0.0.1:8000/todolist/create-ajax/", "https://dinaherokuver.herokuapp.com/todolist/create-ajax/",{
             title : $('#title').val(),
             description: $('#description').val()},
             function (result) {
