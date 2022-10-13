@@ -107,7 +107,7 @@ def create_todo_ajax(request):
         todotemplate = TodolistTemplate.objects.create(user=request.user, title=title, description=description, date=datetime.date.today())
         todotemplate.save()
 
-        todo = {title : todotemplate.title,description:todotemplate.description, date:todotemplate.date}
+        todo = {"title" : todotemplate.title,"description":todotemplate.description, "date":todotemplate.date}
         return JsonResponse(todo)
 
 def delete_task(request, id):
