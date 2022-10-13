@@ -32,7 +32,7 @@ def show_todolist(request):
     return render(request, "todolist_ajax.html", context)
 
 def show_json(request):
-    data = TodolistTemplate.objects.all()
+    data = TodolistTemplate.objects.filter(user=request.user)
     return HTTPResponse(serializers.serialize("json", data), content_type="application/json")
 
 def show_json_by_id(request, id):
