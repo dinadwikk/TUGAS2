@@ -1,7 +1,10 @@
 from http import cookies
 from http.cookiejar import Cookie
+from multiprocessing import context
+from turtle import title
 from django.shortcuts import render
 from django.shortcuts import redirect
+from django.core import serializers
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
@@ -12,6 +15,9 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from todolist.forms import TaskForm
 from todolist.models import TodolistTemplate
+from django.http import JsonResponse
+from django.http import HttpResponse
+
 
 @login_required(login_url='/todolist/login/')
 def show_todolist(request):
@@ -21,7 +27,16 @@ def show_todolist(request):
     'username': request.user.username,
     'last_login': request.COOKIES['last_login'],
     }
-    return render(request, "todolist.html", context)
+    return render(request, "todolist_ajax.html", context)
+
+def show_json(request):
+    data = TodolistTemplate.objects.all()
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+def show_json_by_id(request, id):
+    data = TodolistTemplate.objects.filter(pk=id)
+    #ika JSON
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 def register(request):
     form = UserCreationForm()
@@ -78,4 +93,26 @@ def delete(request, id):
     todo_delete = TodolistTemplate.objects.filter(pk=id)
     todo_delete.delete()
     return HttpResponseRedirect(reverse('todolist:show_todolist'))
+
+
+
+@login_required(login_url='/todolist/login/')
+def create_todo_ajax(request):
+    if request.method == "POST":
+        user = request.POST.get("user")
+        title = request.POST.get("titlr")
+        description = request.POST.get("description")
+
+        create_todolist = TodolistTemplate.objects.create(
+            user=user, 
+            title=title, 
+            description=description
+        )
+        return JsonResponse(
+            {
+                'error':False,
+                'msg':'Success'
+            }
+        )
+    return redirect('todolist:show_todolist')
 
